@@ -31,27 +31,27 @@ class Conta:
         return self.__saldo
 
     @saldo.setter
-    def saldo(self: object, valor: float) -> None:
-        self.__saldo == valor
+    def saldo(self, valor: float) -> None:
+        self.__saldo = valor
 
     @property
     def limite(self: object) -> float:
         return self.__limite
     
     @limite.setter
-    def limite(self: object, valor: float) -> None:
-        self.__limite == valor
+    def limite(self, valor: float) -> None:
+        self.__limite = valor
     
     @property
     def saldo_total(self: object) -> float:
         return self.__saldo_total
     
     @saldo_total.setter
-    def saldo_total(self: object, valor: float) -> None:
+    def saldo_total(self, valor: float) -> None:
         self.__saldo_total = valor
     
     @property
-    def _calcula_saldo_total(self: object) -> float:
+    def _calcula_saldo_total(self) -> float:
         return self.saldo + self.limite
 
     def depositar(self: object, valor: float) -> None:
