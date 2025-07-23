@@ -12,7 +12,7 @@ class Conta:
         self.__cliente: Cliente = cliente
         self.__saldo: float = 0.0
         self.__limite: float = 100.0
-        self.__saldo_total: float = self.calcula_saldo_total
+        self.__saldo_total: float = self._calcula_saldo_total
         Conta.codigo += 1
 
     def __str__(self: object) -> str:
@@ -51,46 +51,46 @@ class Conta:
         self.__saldo_total = valor
     
     @property
-    def calcula_saldo_total(self: object) -> float:
-        return self.__saldo + self.__limite
+    def _calcula_saldo_total(self: object) -> float:
+        return self.saldo + self.limite
 
     def depositar(self: object, valor: float) -> None:
         if valor > 0:
             self.saldo = self.saldo + valor
-            self.saldo_total = self.calcula_saldo_total
+            self.saldo_total = self._calcula_saldo_total
             print('Depósito efetuado com sucesso!')
         else:
-            print('Erro ao efetuar depósito. Tente novamente!')
+            print('Erro ao efetuar depósito. Tente novamente')
 
     def sacar(self: object, valor: float) -> None:
         if 0 < valor <= self.saldo_total:
             if self.saldo >= valor:
                 self.saldo = self.saldo - valor
-                self.saldo_total = self.calcula_saldo_total
+                self.saldo_total = self._calcula_saldo_total
             else:
                 restante: float = self.saldo - valor
                 self.limite = self.limite + restante
                 self.saldo = 0
-                self.saldo_total = self.calcula_saldo_total
-            print('Saque efetuado com sucesso!')
+                self.saldo_total = self._calcula_saldo_total
+            print('Saque efetuado com sucesso')
         else:
-            print('Saque não realizado. Tente novamente!')
+            print('Saque não realizado. Tente novamente')
 
     def transferir(self: object, destino: object, valor: float) -> None:
         if valor > 0 and self.saldo_total >= valor:
             if self.saldo >= valor:
                 self.saldo = self.saldo - valor
-                self.saldo_total = self.calcula_saldo_total
+                self.saldo_total = self._calcula_saldo_total
                 destino.saldo = destino.saldo + valor
-                destino.saldo_total = destino.calcula_saldo_total
+                destino.saldo_total = destino._calcula_saldo_total
             else:
                 restante: float = self.saldo - valor
                 self.saldo = 0
                 self.limite = self.limite + restante
-                self.saldo_total = self.calcula_saldo_total
+                self.saldo_total = self._calcula_saldo_total
                 destino.saldo = destino.saldo + valor
-                destino.saldo_total = destino.calcula_saldo_total
-            print('Transferência efetuada com sucesso!')
+                destino.saldo_total = destino._calcula_saldo_total
+            print('Transferência realizada com sucesso.')
         else:
-            print('Transferência não realizada. Tente novamente!')
+            print('Transferência não realizada. Tente novamente')
     
